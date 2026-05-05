@@ -1,0 +1,60 @@
+{
+  "version": 4,
+  "env": {
+    "commonIncludePaths": [
+      "${workspaceFolder}",
+      "${workspaceFolder}/GP",
+      "${workspaceFolder}/third_party",
+      "${workspaceFolder}/third_party/glint",
+      "${workspaceFolder}/third_party/iPlug2OOS/iPlug2/WDL",
+      "${workspaceFolder}/third_party/iPlug2OOS/iPlug2/IPlug",
+      "${workspaceFolder}/third_party/iPlug2OOS/iPlug2/Dependencies",
+      "${workspaceFolder}/old_skxx_ui/third_party/skia/src/skia",
+      "${workspaceFolder}/old_skxx_ui/third_party/skia/src/skia/include",
+      "${workspaceFolder}/old_skxx_ui/third_party/skia/src/skia/include/config",
+      "${workspaceFolder}/old_skxx_ui/third_party/skia/src/skia/include/core",
+      "${workspaceFolder}/old_skxx_ui/third_party/skia/src/skia/include/effects",
+      "${workspaceFolder}/old_skxx_ui/third_party/skia/src/skia/include/gpu",
+      "${workspaceFolder}/old_skxx_ui/third_party/skia/src/skia/include/private",
+      "${workspaceFolder}/old_skxx_ui/third_party/skia/src/skia/include/utils",
+      "${workspaceFolder}/old_skxx_ui/third_party/skia/src/skia/modules/skcms",
+      "${workspaceFolder}/old_skxx_ui/third_party/skia/src/skia/modules/svg/include",
+      "${workspaceFolder}/glint_user_code"
+    ],
+    "commonDefs": [
+      "UNICODE",
+      "_UNICODE",
+      "NOMINMAX",
+      "WIN32",
+      "_WINDOWS",
+      "OS_WIN",
+      "APP_API",
+      "IPLUG_DSP=1",
+      "IPLUG_EDITOR=1",
+      "NO_IGRAPHICS",
+      "IGRAPHICS_SKIA",
+      "GLINT_RENDER_GPU=1"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "Win32",
+      "includePath": [
+        "${commonIncludePaths}"
+      ],
+      "defines": [
+        "${commonDefs}"
+      ],
+      "compilerPath": "cl.exe",
+      "intelliSenseMode": "windows-msvc-x64",
+      "cStandard": "c17",
+      "cppStandard": "c++20",
+      "browse": {
+        "path": [
+          "${commonIncludePaths}"
+        ],
+        "limitSymbolsToIncludedHeaders": true
+      }
+    }
+  ]
+}

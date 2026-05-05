@@ -31,7 +31,21 @@ cd glint-iplug2-demo
 git submodule update --init --recursive
 ```
 
-### 3. Init Skia
+### 3. Download the VST3 SDK
+
+```sh
+# macOS
+bash scripts/download_vst3_sdk.sh
+
+# Windows (PowerShell)
+pwsh scripts/download_vst3_sdk.ps1
+```
+
+This clones the [Steinberg VST3 SDK](https://github.com/steinbergmedia/vst3sdk) into `third_party/iPlug2OOS/iPlug2/Dependencies/IPlug/VST3_SDK`. Only needs to be run once.
+
+---
+
+### 4. Init Skia
 
 #### Option A — Prebuilt libraries (recommended, fast)
 
@@ -71,7 +85,7 @@ node third_party/glint/scripts/init_skia.mjs --source --backend d3d12 --config B
 
 ---
 
-### 4. Build & Run
+### 5. Build & Run
 
 Open the `glint-iplug2-demo` folder in VS Code. Build tasks and launch configurations are already set up in `.vscode/`.
 

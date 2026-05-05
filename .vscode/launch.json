@@ -1,0 +1,421 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{"name":"💽 = No bundle"},
+		{"name":"📦 = Shallow bundle"},
+		{"name":"🧱 = Deep bundle"},
+
+		{"name":"\u2003             "},
+		{"name": "GlintPlug",},
+		{"name": "├─ 田 Windows"},
+
+		// ── Standalone ────────────────────────────────────────────────────────
+		{"name": "│\u2003└─ Standalone"},
+		{
+			"name": "│\u2003\u2003└─ 💽 Debug +v",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}\\GP\\build-win\\GlintPlug_x64.exe",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}\\GP\\build-win",
+			"environment": [],
+			"console": "integratedTerminal",
+			"symbolSearchPath": "${workspaceFolder}\\GP\\build-win\\app\\x64\\Debug;${workspaceFolder}\\GP\\build-win\\pdbs",
+			"preLaunchTask": "💽 GP Standalone Build Debug +v VS2022"
+		},
+		{
+			"name": "│\u2003\u2003├─ 💽 Debug",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}\\GP\\build-win\\GlintPlug_x64.exe",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}\\GP\\build-win",
+			"environment": [],
+			"console": "integratedTerminal",
+			"symbolSearchPath": "${workspaceFolder}\\GP\\build-win\\app\\x64\\Debug;${workspaceFolder}\\GP\\build-win\\pdbs",
+			"preLaunchTask": "GP Standalone Build Debug VS2022"
+		},
+		{
+			"name": "│\u2003\u2003├─ 📦 Debug",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}\\GP\\build-win\\GlintPlug_x64.exe",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}\\GP\\build-win",
+			"environment": [],
+			"console": "integratedTerminal",
+			"symbolSearchPath": "${workspaceFolder}\\GP\\build-win\\app\\x64\\Debug;${workspaceFolder}\\GP\\build-win\\pdbs",
+			"preLaunchTask": "📦 GP Standalone Build Debug Shallow VS2022"
+		},
+		{
+			"name": "│\u2003\u2003└─ 🧱 Debug",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}\\GP\\build-win\\GlintPlug_x64.exe",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}\\GP\\build-win",
+			"environment": [],
+			"console": "integratedTerminal",
+			"symbolSearchPath": "${workspaceFolder}\\GP\\build-win\\app\\x64\\Debug;${workspaceFolder}\\GP\\build-win\\pdbs",
+			"preLaunchTask": "🧱 GP Standalone Build Debug Deep VS2022"
+		},
+		
+		{"name": "│ "},
+		{
+			"name": "│\u2003\u2003├─ 💽 Release",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}\\GP\\build-win\\GlintPlug_x64.exe",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}\\GP\\build-win",
+			"environment": [
+				{ "name": "GLINT_ENABLE_RUNTIME_LOG", "value": "1" }
+			],
+			"console": "integratedTerminal",
+			"symbolSearchPath": "${workspaceFolder}\\GP\\build-win\\app\\x64\\Release;${workspaceFolder}\\GP\\build-win\\pdbs",
+			"preLaunchTask": "GP Standalone Build Release VS2022"
+		},
+		{
+			"name": "│\u2003\u2003├─ 📦 Release",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}\\GP\\build-win\\GlintPlug_x64.exe",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}\\GP\\build-win",
+			"environment": [],
+			"console": "integratedTerminal",
+			"symbolSearchPath": "${workspaceFolder}\\GP\\build-win\\app\\x64\\Release;${workspaceFolder}\\GP\\build-win\\pdbs",
+			"preLaunchTask": "📦 GP Standalone Build Release Shallow VS2022"
+		},
+		{
+			"name": "│\u2003\u2003└─ 🧱 Release",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}\\GP\\build-win\\GlintPlug_x64.exe",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}\\GP\\build-win",
+			"environment": [],
+			"console": "integratedTerminal",
+			"symbolSearchPath": "${workspaceFolder}\\GP\\build-win\\app\\x64\\Release;${workspaceFolder}\\GP\\build-win\\pdbs",
+			"preLaunchTask": "🧱 GP Standalone Build Release Deep VS2022"
+		},
+
+		// ── VST3 - Reaper ─────────────────────────────────────────────────────
+		
+		{"name": "│\u2003"},
+		{"name": "│\u2003├─ VST3 (Reaper)"},
+		{
+			"name": "│\u2003\u2003├─ 💽 Debug +v ",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${env:ProgramW6432}\\REAPER (x64)\\reaper.exe",
+			"args": [ "${workspaceFolder}\\GP\\GP.RPP" ],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}\\GP",
+			"environment": [],
+			"console": "integratedTerminal",
+			"symbolSearchPath": "${workspaceFolder}\\GP\\build-win\\vst3\\x64\\Debug;${workspaceFolder}\\GP\\build-win\\pdbs",
+			"preLaunchTask": "💽 GP VST3 Rebuild Debug +v VS2022"
+		},
+		{
+			"name": "│\u2003\u2003├─ 💽 Debug ",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${env:ProgramW6432}\\REAPER (x64)\\reaper.exe",
+			"args": [ "${workspaceFolder}\\GP\\GP.RPP" ],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}\\GP",
+			"environment": [],
+			"console": "integratedTerminal",
+			"symbolSearchPath": "${workspaceFolder}\\GP\\build-win\\vst3\\x64\\Debug;${workspaceFolder}\\GP\\build-win\\pdbs",
+			"preLaunchTask": "GP VST3 Rebuild Debug VS2022"
+		},
+		{
+			"name": "│\u2003\u2003├─ 📦 Debug ",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${env:ProgramW6432}\\REAPER (x64)\\reaper.exe",
+			"args": [ "${workspaceFolder}\\GP\\GP.RPP" ],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}\\GP",
+			"environment": [],
+			"console": "integratedTerminal",
+			"symbolSearchPath": "${workspaceFolder}\\GP\\build-win\\vst3\\x64\\Debug;${workspaceFolder}\\GP\\build-win\\pdbs",
+			"preLaunchTask": "📦 GP VST3 Rebuild Debug Shallow VS2022"
+		},
+		{
+			"name": "│\u2003\u2003├─ 🧱 Debug ",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${env:ProgramW6432}\\REAPER (x64)\\reaper.exe",
+			"args": [ "${workspaceFolder}\\GP\\GP.RPP" ],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}\\GP",
+			"environment": [],
+			"console": "integratedTerminal",
+			"symbolSearchPath": "${workspaceFolder}\\GP\\build-win\\vst3\\x64\\Debug;${workspaceFolder}\\GP\\build-win\\pdbs",
+			"preLaunchTask": "🧱 GP VST3 Rebuild Debug Deep VS2022"
+		},
+		{"name":"│\u2003 "},
+		{
+			"name": "│\u2003\u2003├─ 💽 Release ",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${env:ProgramW6432}\\REAPER (x64)\\reaper.exe",
+			"args": [ "${workspaceFolder}\\GP\\GP.RPP" ],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}\\GP",
+			"environment": [],
+			"console": "integratedTerminal",
+			"symbolSearchPath": "${workspaceFolder}\\GP\\build-win\\vst3\\x64\\Release;${workspaceFolder}\\GP\\build-win\\pdbs",
+			"preLaunchTask": "GP VST3 Rebuild Release VS2022"
+		},
+		{
+			"name": "│\u2003\u2003├─ 📦 Release ",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${env:ProgramW6432}\\REAPER (x64)\\reaper.exe",
+			"args": [ "${workspaceFolder}\\GP\\GP.RPP" ],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}\\GP",
+			"environment": [],
+			"console": "integratedTerminal",
+			"symbolSearchPath": "${workspaceFolder}\\GP\\build-win\\vst3\\x64\\Release;${workspaceFolder}\\GP\\build-win\\pdbs",
+			"preLaunchTask": "📦 GP VST3 Rebuild Release Shallow VS2022"
+		},
+		{
+			"name": "│\u2003\u2003└─ 🧱 Release ",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${env:ProgramW6432}\\REAPER (x64)\\reaper.exe",
+			"args": [ "${workspaceFolder}\\GP\\GP.RPP" ],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}\\GP",
+			"environment": [],
+			"console": "integratedTerminal",
+			"symbolSearchPath": "${workspaceFolder}\\GP\\build-win\\vst3\\x64\\Release;${workspaceFolder}\\GP\\build-win\\pdbs",
+			"preLaunchTask": "🧱 GP VST3 Rebuild Release Deep VS2022"
+
+		},
+
+
+
+		{"name":"\u2003       "},
+		{"name":"\u2003           "},
+		
+		{"name": "├─  MacOS"},
+
+		// ── Standalone ────────────────────────────────────────────────────────
+		{"name": "\u2003└─ Standalone"},
+		{
+			"name": "\u2003\u2003├─ 💽 Debug +v",
+			"type": "lldb",
+			"request": "launch",
+			"program": "${workspaceFolder}/GP/build-macos-debug/out/GlintPlug.app/Contents/MacOS/GlintPlug",
+			"cwd": "${workspaceFolder}/GP/build-macos-debug/out/GlintPlug.app/Contents/MacOS",
+			"preLaunchTask": "💽 GP macOS Standalone Build Debug +v (CMake)"
+		},
+		{
+			"name": "\u2003\u2003├─ 💽 Debug",
+			"type": "lldb",
+			"request": "launch",
+			"program": "${workspaceFolder}/GP/build-macos-debug/out/GlintPlug.app/Contents/MacOS/GlintPlug",
+			"cwd": "${workspaceFolder}/GP/build-macos-debug/out/GlintPlug.app/Contents/MacOS",
+			"preLaunchTask": "GP macOS Build Debug (CMake)"
+		},
+		{
+			"name": "\u2003\u2003├─ 📦 Debug",
+			"type": "lldb",
+			"request": "launch",
+			"program": "${workspaceFolder}/GP/build-macos-debug-shallow/out/GlintPlug.app/Contents/MacOS/GlintPlug",
+			"cwd": "${workspaceFolder}/GP/build-macos-debug-shallow/out/GlintPlug.app/Contents/MacOS",
+			"preLaunchTask": "📦 GP macOS Build Debug Shallow (CMake)"
+		},
+		{
+			"name": "\u2003\u2003└─ 🧱 Debug",
+			"type": "lldb",
+			"request": "launch",
+			"program": "${workspaceFolder}/GP/build-macos-debug-deep/out/GlintPlug.app/Contents/MacOS/GlintPlug",
+			"cwd": "${workspaceFolder}/GP/build-macos-debug-deep/out/GlintPlug.app/Contents/MacOS",
+			"preLaunchTask": "🧱 GP macOS Build Debug Deep (CMake)"
+		},
+
+		{"name": "\u2003 "},
+		{
+			"name": "\u2003\u2003├─ 💽 Release",
+			"type": "lldb",
+			"request": "launch",
+			"program": "${workspaceFolder}/GP/build-macos-release/out/GlintPlug.app/Contents/MacOS/GlintPlug",
+			"cwd": "${workspaceFolder}/GP/build-macos-release/out/GlintPlug.app/Contents/MacOS",
+			"preLaunchTask": "GP macOS Build Release (CMake)"
+		},
+		{
+			"name": "\u2003\u2003├─ 📦 Release",
+			"type": "lldb",
+			"request": "launch",
+			"program": "${workspaceFolder}/GP/build-macos-release-shallow/out/GlintPlug.app/Contents/MacOS/GlintPlug",
+			"cwd": "${workspaceFolder}/GP/build-macos-release-shallow/out/GlintPlug.app/Contents/MacOS",
+			"preLaunchTask": "📦 GP macOS Build Release Shallow (CMake)"
+		},
+		{
+			"name": "\u2003\u2003└─ 🧱 Release",
+			"type": "lldb",
+			"request": "launch",
+			"program": "${workspaceFolder}/GP/build-macos-release-deep/out/GlintPlug.app/Contents/MacOS/GlintPlug",
+			"cwd": "${workspaceFolder}/GP/build-macos-release-deep/out/GlintPlug.app/Contents/MacOS",
+			"preLaunchTask": "🧱 GP macOS Build Release Deep (CMake)"
+		},
+
+		// ── VST3 (Reaper) ─────────────────────────────────────────────────────
+		{"name": "\u2003  "},
+		{"name": "\u2003├─ VST3 (Reaper)"},
+		{
+			"name": "\u2003\u2003├─ 💽 Debug +v  ",
+			"type": "lldb",
+			"request": "launch",
+			"program": "/Applications/REAPER.app/Contents/MacOS/REAPER",
+			"args": ["${workspaceFolder}/GP/GP.RPP"],
+			"cwd": "${workspaceFolder}/GP",
+			"preLaunchTask": "💽 GP macOS VST3 Build Debug +v (CMake)"
+		},
+		{
+			"name": "\u2003\u2003├─ 💽 Debug  ",
+			"type": "lldb",
+			"request": "launch",
+			"program": "/Applications/REAPER.app/Contents/MacOS/REAPER",
+			"args": ["${workspaceFolder}/GP/GP.RPP"],
+			"cwd": "${workspaceFolder}/GP",
+			"preLaunchTask": "GP macOS Build Debug (CMake)"
+		},
+		{
+			"name": "\u2003\u2003├─ 📦 Debug  ",
+			"type": "lldb",
+			"request": "launch",
+			"program": "/Applications/REAPER.app/Contents/MacOS/REAPER",
+			"args": ["${workspaceFolder}/GP/GP.RPP"],
+			"cwd": "${workspaceFolder}/GP",
+			"preLaunchTask": "📦 GP macOS Build Debug Shallow (CMake)"
+		},
+		{
+			"name": "\u2003\u2003└─ 🧱 Debug  ",
+			"type": "lldb",
+			"request": "launch",
+			"program": "/Applications/REAPER.app/Contents/MacOS/REAPER",
+			"args": ["${workspaceFolder}/GP/GP.RPP"],
+			"cwd": "${workspaceFolder}/GP",
+			"preLaunchTask": "🧱 GP macOS Build Debug Deep (CMake)"
+		},
+
+		{"name": "\u2003     "},
+		{
+			"name": "\u2003\u2003├─ 💽 Release  ",
+			"type": "lldb",
+			"request": "launch",
+			"program": "/Applications/REAPER.app/Contents/MacOS/REAPER",
+			"args": ["${workspaceFolder}/GP/GP.RPP"],
+			"cwd": "${workspaceFolder}/GP",
+			"preLaunchTask": "GP macOS Build Release (CMake)"
+		},
+		{
+			"name": "\u2003\u2003├─ 📦 Release  ",
+			"type": "lldb",
+			"request": "launch",
+			"program": "/Applications/REAPER.app/Contents/MacOS/REAPER",
+			"args": ["${workspaceFolder}/GP/GP.RPP"],
+			"cwd": "${workspaceFolder}/GP",
+			"preLaunchTask": "📦 GP macOS Build Release Shallow (CMake)"
+		},
+		{
+			"name": "\u2003\u2003└─ 🧱 Release  ",
+			"type": "lldb",
+			"request": "launch",
+			"program": "/Applications/REAPER.app/Contents/MacOS/REAPER",
+			"args": ["${workspaceFolder}/GP/GP.RPP"],
+			"cwd": "${workspaceFolder}/GP",
+			"preLaunchTask": "🧱 GP macOS Build Release Deep (CMake)"
+		},
+
+		{"name": "\u2003    "},
+		{"name": "\u2003├─ AUv2 (Reaper)"},
+		{
+			"name": "\u2003\u2003├─ 💽 Debug +v   ",
+			"type": "lldb",
+			"request": "launch",
+			"program": "/Applications/REAPER.app/Contents/MacOS/REAPER",
+			"args": [],
+			"cwd": "${workspaceFolder}/GP",
+			"preLaunchTask": "💽 GP macOS AUv2 Build Debug +v (CMake)"
+		},
+		{
+			"name": "\u2003\u2003├─ 💽 Debug   ",
+			"type": "lldb",
+			"request": "launch",
+			"program": "/Applications/REAPER.app/Contents/MacOS/REAPER",
+			"args": [],
+			"cwd": "${workspaceFolder}/GP",
+			"preLaunchTask": "GP macOS Build Debug (CMake)"
+		},
+		{
+			"name": "\u2003\u2003├─ 📦 Debug   ",
+			"type": "lldb",
+			"request": "launch",
+			"program": "/Applications/REAPER.app/Contents/MacOS/REAPER",
+			"args": [],
+			"cwd": "${workspaceFolder}/GP",
+			"preLaunchTask": "📦 GP macOS Build Debug Shallow (CMake)"
+		},
+		{
+			"name": "\u2003\u2003└─ 🧱 Debug   ",
+			"type": "lldb",
+			"request": "launch",
+			"program": "/Applications/REAPER.app/Contents/MacOS/REAPER",
+			"args": [],
+			"cwd": "${workspaceFolder}/GP",
+			"preLaunchTask": "🧱 GP macOS Build Debug Deep (CMake)"
+		},
+
+		{"name": "\u2003         "},
+		{
+			"name": "\u2003\u2003├─ 💽 Release   ",
+			"type": "lldb",
+			"request": "launch",
+			"program": "/Applications/REAPER.app/Contents/MacOS/REAPER",
+			"args": [],
+			"cwd": "${workspaceFolder}/GP",
+			"preLaunchTask": "GP macOS Build Release (CMake)"
+		},
+		{
+			"name": "\u2003\u2003├─ 📦 Release   ",
+			"type": "lldb",
+			"request": "launch",
+			"program": "/Applications/REAPER.app/Contents/MacOS/REAPER",
+			"args": [],
+			"cwd": "${workspaceFolder}/GP",
+			"preLaunchTask": "📦 GP macOS Build Release Shallow (CMake)"
+		},
+		{
+			"name": "\u2003\u2003└─ 🧱 Release   ",
+			"type": "lldb",
+			"request": "launch",
+			"program": "/Applications/REAPER.app/Contents/MacOS/REAPER",
+			"args": [],
+			"cwd": "${workspaceFolder}/GP",
+			"preLaunchTask": "🧱 GP macOS Build Release Deep (CMake)"
+		},
+
+		{"name": "\u2003          "},
+		{
+			"name": "\u2003└─ Pick host",
+			"type": "lldb",
+			"request": "attach",
+			"pid": "${command:pickProcess}"
+		}
+	]
+}

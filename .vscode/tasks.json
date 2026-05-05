@@ -1,0 +1,579 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Demo App Build Debug VS2022",
+			"type": "shell",
+			"command": "cmake --preset windows-vs2022-debug; cmake --build --preset windows-vs2022-debug",
+			"options": {
+				"cwd": "${workspaceFolder}\\old_skxx_ui\\apps\\demo"
+			},
+			"group": "build",
+			"problemMatcher": [
+				"$msCompile"
+			]
+		},
+		{
+			"label": "GP App Build Release VS2022",
+			"type": "shell",
+			"command": "cmake --preset windows-vs2022; cmake --build --preset windows-vs2022",
+			"options": {
+				"cwd": "${workspaceFolder}\\old_skxx_ui\\apps\\vcu"
+			},
+			"group": "build",
+			"problemMatcher": [
+				"$msCompile"
+			]
+		},
+		{
+			"label": "GP Standalone Build Debug VS2022",
+			"type": "shell",
+			"command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+			"args": [
+				".\\GP.sln",
+				"/t:GP-app",
+				"/p:Configuration=Debug",
+				"/p:Platform=x64"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\GP"
+			},
+			"group": "build",
+			"problemMatcher": [
+				"$msCompile"
+			]
+		},
+		{
+			"label": "GP Standalone Rebuild Debug VS2022",
+			"type": "shell",
+			"command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+			"args": [
+				".\\GP.sln",
+				"/t:GP-app:Rebuild",
+				"/p:Configuration=Debug",
+				"/p:Platform=x64"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\GP"
+			},
+			"group": "build",
+			"problemMatcher": [
+				"$msCompile"
+			]
+		},
+		{
+			"label": "GP Standalone Build Release VS2022",
+			"type": "shell",
+			"command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+			"args": [
+				".\\GP.sln",
+				"/t:GP-app",
+				"/p:Configuration=Release",
+				"/p:Platform=x64"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\GP"
+			},
+			"group": "build",
+			"problemMatcher": [
+				"$msCompile"
+			]
+		},
+		{
+			"label": "GP VST3 Rebuild Debug VS2022",
+			"type": "shell",
+			"command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+			"args": [
+				".\\GP.sln",
+				"/t:GP-vst3:Rebuild",
+				"/p:Configuration=Debug",
+				"/p:Platform=x64"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\GP"
+			},
+			"group": "build",
+			"problemMatcher": [
+				"$msCompile"
+			]
+		},
+		{
+			"label": "GP VST3 Rebuild Release VS2022",
+			"type": "shell",
+			"command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+			"args": [
+				".\\GP.sln",
+				"/t:GP-vst3:Rebuild",
+				"/p:Configuration=Release",
+				"/p:Platform=x64"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\GP"
+			},
+			"group": "build",
+			"problemMatcher": [
+				"$msCompile"
+			]
+		},
+		{
+			"label": "GP Standalone Rebuild Release VS2022",
+			"type": "shell",
+			"command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+			"args": [
+				".\\GP.sln",
+				"/t:GP-app:Rebuild",
+				"/p:Configuration=Release",
+				"/p:Platform=x64"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\GP"
+			},
+			"group": "build",
+			"problemMatcher": [
+				"$msCompile"
+			]
+		},
+		{
+			"label": "Glint Bundle Shallow",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"${workspaceFolder}\\third_party\\glint\\scripts\\bundler\\glint_bundler.mjs",
+				"--input", "${workspaceFolder}\\glint_user_code\\web",
+				"--output", "${workspaceFolder}\\GP\\glint_bundle",
+				"--mode", "shallow"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"group": "build",
+			"problemMatcher": []
+		},
+		{
+			"label": "Glint Bundle Deep",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"${workspaceFolder}\\third_party\\glint\\scripts\\bundler\\glint_bundler.mjs",
+				"--input", "${workspaceFolder}\\glint_user_code\\web",
+				"--output", "${workspaceFolder}\\GP\\glint_bundle",
+				"--mode", "deep"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"group": "build",
+			"problemMatcher": []
+		},
+		{
+			"label": "Bump Version",
+			"type": "shell",
+			"command": "node",
+			"args": ["${workspaceFolder}\\scripts\\bump_build_number.mjs"],
+			"options": { "cwd": "${workspaceFolder}" },
+			"group": "build",
+			"problemMatcher": []
+		},
+		{
+			"label": "Bump Version (macOS)",
+			"type": "shell",
+			"command": "node",
+			"args": ["${workspaceFolder}/scripts/bump_build_number.mjs"],
+			"options": { "cwd": "${workspaceFolder}" },
+			"group": "build",
+			"problemMatcher": []
+		},
+		{
+			"label": "💽 GP Standalone Build Debug +v VS2022",
+			"dependsOn": ["Bump Version", "GP Standalone Build Debug VS2022"],
+			"dependsOrder": "sequence",
+			"group": "build",
+			"problemMatcher": []
+		},
+		{
+			"label": "💽 GP VST3 Rebuild Debug +v VS2022",
+			"dependsOn": ["Bump Version", "GP VST3 Rebuild Debug VS2022"],
+			"dependsOrder": "sequence",
+			"group": "build",
+			"problemMatcher": []
+		},
+		{
+			"label": "📦 GP Standalone Build Debug Shallow VS2022",
+			"type": "shell",
+			"command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+			"args": [
+				".\\GP.sln",
+				"/t:GP-app",
+				"/p:Configuration=Debug",
+				"/p:Platform=x64",
+				"/p:ForceImportBeforeCppTargets=${workspaceFolder}\\GP\\config\\glint_bundle_shallow.props"
+			],
+			"dependsOn": ["Glint Bundle Shallow"],
+			"dependsOrder": "sequence",
+			"options": {
+				"cwd": "${workspaceFolder}\\GP"
+			},
+			"group": "build",
+			"problemMatcher": ["$msCompile"]
+		},
+		{
+			"label": "🧱 GP Standalone Build Debug Deep VS2022",
+			"type": "shell",
+			"command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+			"args": [
+				".\\GP.sln",
+				"/t:GP-app",
+				"/p:Configuration=Debug",
+				"/p:Platform=x64",
+				"/p:ForceImportBeforeCppTargets=${workspaceFolder}\\GP\\config\\glint_bundle_deep.props"
+			],
+			"dependsOn": ["Glint Bundle Deep"],
+			"dependsOrder": "sequence",
+			"options": {
+				"cwd": "${workspaceFolder}\\GP"
+			},
+			"group": "build",
+			"problemMatcher": ["$msCompile"]
+		},
+		{
+			"label": "🧱 GP Standalone Build Release Deep VS2022",
+			"type": "shell",
+			"command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+			"args": [
+				".\\GP.sln",
+				"/t:GP-app",
+				"/p:Configuration=Release",
+				"/p:Platform=x64",
+				"/p:ForceImportBeforeCppTargets=${workspaceFolder}\\GP\\config\\glint_bundle_deep.props"
+			],
+			"dependsOn": ["Glint Bundle Deep"],
+			"dependsOrder": "sequence",
+			"options": {
+				"cwd": "${workspaceFolder}\\GP"
+			},
+			"group": "build",
+			"problemMatcher": ["$msCompile"]
+		},
+		{
+			"label": "📦 GP Standalone Build Release Shallow VS2022",
+			"type": "shell",
+			"command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+			"args": [
+				".\\GP.sln",
+				"/t:GP-app",
+				"/p:Configuration=Release",
+				"/p:Platform=x64",
+				"/p:ForceImportBeforeCppTargets=${workspaceFolder}\\GP\\config\\glint_bundle_shallow.props"
+			],
+			"dependsOn": ["Glint Bundle Shallow"],
+			"dependsOrder": "sequence",
+			"options": {
+				"cwd": "${workspaceFolder}\\GP"
+			},
+			"group": "build",
+			"problemMatcher": ["$msCompile"]
+		},
+		{
+			"label": "📦 GP Standalone Rebuild Debug Shallow VS2022",
+			"type": "shell",
+			"command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+			"args": [
+				".\\GP.sln",
+				"/t:GP-app:Rebuild",
+				"/p:Configuration=Debug",
+				"/p:Platform=x64",
+				"/p:ForceImportBeforeCppTargets=${workspaceFolder}\\GP\\config\\glint_bundle_shallow.props"
+			],
+			"dependsOn": ["Glint Bundle Shallow"],
+			"dependsOrder": "sequence",
+			"options": {
+				"cwd": "${workspaceFolder}\\GP"
+			},
+			"group": "build",
+			"problemMatcher": ["$msCompile"]
+		},
+		{
+			"label": "🧱 GP Standalone Rebuild Debug Deep VS2022",
+			"type": "shell",
+			"command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+			"args": [
+				".\\GP.sln",
+				"/t:GP-app:Rebuild",
+				"/p:Configuration=Debug",
+				"/p:Platform=x64",
+				"/p:ForceImportBeforeCppTargets=${workspaceFolder}\\GP\\config\\glint_bundle_deep.props"
+			],
+			"dependsOn": ["Glint Bundle Deep"],
+			"dependsOrder": "sequence",
+			"options": {
+				"cwd": "${workspaceFolder}\\GP"
+			},
+			"group": "build",
+			"problemMatcher": ["$msCompile"]
+		},
+		{
+			"label": "🧱 GP Standalone Rebuild Release Deep VS2022",
+			"type": "shell",
+			"command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+			"args": [
+				".\\GP.sln",
+				"/t:GP-app:Rebuild",
+				"/p:Configuration=Release",
+				"/p:Platform=x64",
+				"/p:ForceImportBeforeCppTargets=${workspaceFolder}\\GP\\config\\glint_bundle_deep.props"
+			],
+			"dependsOn": ["Glint Bundle Deep"],
+			"dependsOrder": "sequence",
+			"options": {
+				"cwd": "${workspaceFolder}\\GP"
+			},
+			"group": "build",
+			"problemMatcher": ["$msCompile"]
+		},
+		{
+			"label": "📦 GP Standalone Rebuild Release Shallow VS2022",
+			"type": "shell",
+			"command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+			"args": [
+				".\\GP.sln",
+				"/t:GP-app:Rebuild",
+				"/p:Configuration=Release",
+				"/p:Platform=x64",
+				"/p:ForceImportBeforeCppTargets=${workspaceFolder}\\GP\\config\\glint_bundle_shallow.props"
+			],
+			"dependsOn": ["Glint Bundle Shallow"],
+			"dependsOrder": "sequence",
+			"options": {
+				"cwd": "${workspaceFolder}\\GP"
+			},
+			"group": "build",
+			"problemMatcher": ["$msCompile"]
+		},
+		{
+			"label": "📦 GP VST3 Rebuild Debug Shallow VS2022",
+			"type": "shell",
+			"command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+			"args": [
+				".\\GP.sln",
+				"/t:GP-vst3:Rebuild",
+				"/p:Configuration=Debug",
+				"/p:Platform=x64",
+				"/p:ForceImportBeforeCppTargets=${workspaceFolder}\\GP\\config\\glint_bundle_shallow.props"
+			],
+			"dependsOn": ["Glint Bundle Shallow"],
+			"dependsOrder": "sequence",
+			"options": {
+				"cwd": "${workspaceFolder}\\GP"
+			},
+			"group": "build",
+			"problemMatcher": ["$msCompile"]
+		},
+		{
+			"label": "🧱 GP VST3 Rebuild Debug Deep VS2022",
+			"type": "shell",
+			"command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+			"args": [
+				".\\GP.sln",
+				"/t:GP-vst3:Rebuild",
+				"/p:Configuration=Debug",
+				"/p:Platform=x64",
+				"/p:ForceImportBeforeCppTargets=${workspaceFolder}\\GP\\config\\glint_bundle_deep.props"
+			],
+			"dependsOn": ["Glint Bundle Deep"],
+			"dependsOrder": "sequence",
+			"options": {
+				"cwd": "${workspaceFolder}\\GP"
+			},
+			"group": "build",
+			"problemMatcher": ["$msCompile"]
+		},
+		{
+			"label": "🧱 GP VST3 Rebuild Release Deep VS2022",
+			"type": "shell",
+			"command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+			"args": [
+				".\\GP.sln",
+				"/t:GP-vst3:Rebuild",
+				"/p:Configuration=Release",
+				"/p:Platform=x64",
+				"/p:ForceImportBeforeCppTargets=${workspaceFolder}\\GP\\config\\glint_bundle_deep.props"
+			],
+			"dependsOn": ["Glint Bundle Deep"],
+			"dependsOrder": "sequence",
+			"options": {
+				"cwd": "${workspaceFolder}\\GP"
+			},
+			"group": "build",
+			"problemMatcher": ["$msCompile"]
+		},
+		{
+			"label": "📦 GP VST3 Rebuild Release Shallow VS2022",
+			"type": "shell",
+			"command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.exe",
+			"args": [
+				".\\GP.sln",
+				"/t:GP-vst3:Rebuild",
+				"/p:Configuration=Release",
+				"/p:Platform=x64",
+				"/p:ForceImportBeforeCppTargets=${workspaceFolder}\\GP\\config\\glint_bundle_shallow.props"
+			],
+			"dependsOn": ["Glint Bundle Shallow"],
+			"dependsOrder": "sequence",
+			"options": {
+				"cwd": "${workspaceFolder}\\GP"
+			},
+			"group": "build",
+			"problemMatcher": ["$msCompile"]
+		},
+		{
+			"label": "Validate GP Windows Launch Wiring",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"${workspaceFolder}\\scripts\\test_gp_windows_launch_entries.mjs"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"group": "test",
+			"problemMatcher": []
+		},
+		{
+			"label": "GP macOS Build Debug (CMake)",
+			"type": "shell",
+			"command": "cmake -S . -B build-macos-debug -DCMAKE_BUILD_TYPE=Debug && cmake --build build-macos-debug -j4",
+			"options": {
+				"cwd": "${workspaceFolder}/GP"
+			},
+			"group": "build",
+			"problemMatcher": [
+				"$gcc"
+			]
+		},
+		{
+			"label": "Legacy Demo macOS Build Debug (CMake)",
+			"type": "shell",
+			"command": "cmake --preset macos-debug && cmake --build --preset macos-debug -j4",
+			"options": {
+				"cwd": "${workspaceFolder}/old_skxx_ui/apps/demo"
+			},
+			"group": "build",
+			"problemMatcher": [
+				"$gcc"
+			]
+		},
+		{
+			"label": "Legacy GP macOS Build Debug (CMake)",
+			"type": "shell",
+			"command": "cmake --preset macos-debug && cmake --build --preset macos-debug -j4",
+			"options": {
+				"cwd": "${workspaceFolder}/old_skxx_ui/apps/gp"
+			},
+			"group": "build",
+			"problemMatcher": [
+				"$gcc"
+			]
+		},
+
+		// ── macOS glint bundler ───────────────────────────────────────────────
+		{
+			"label": "Glint Bundle Shallow (macOS)",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"${workspaceFolder}/third_party/glint/scripts/bundler/glint_bundler.mjs",
+				"--input", "${workspaceFolder}/glint_user_code/web",
+				"--output", "${workspaceFolder}/GP/glint_bundle",
+				"--mode", "shallow"
+			],
+			"options": { "cwd": "${workspaceFolder}" },
+			"group": "build",
+			"problemMatcher": []
+		},
+		{
+			"label": "Glint Bundle Deep (macOS)",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"${workspaceFolder}/third_party/glint/scripts/bundler/glint_bundler.mjs",
+				"--input", "${workspaceFolder}/glint_user_code/web",
+				"--output", "${workspaceFolder}/GP/glint_bundle",
+				"--mode", "deep"
+			],
+			"options": { "cwd": "${workspaceFolder}" },
+			"group": "build",
+			"problemMatcher": []
+		},
+
+		// ── macOS GP build tasks ─────────────────────────────────────────────
+		{
+			"label": "💽 GP macOS Standalone Build Debug +v (CMake)",
+			"dependsOn": ["Bump Version (macOS)", "GP macOS Build Debug (CMake)"],
+			"dependsOrder": "sequence",
+			"group": "build",
+			"problemMatcher": []
+		},
+		{
+			"label": "💽 GP macOS VST3 Build Debug +v (CMake)",
+			"dependsOn": ["Bump Version (macOS)", "GP macOS Build Debug (CMake)"],
+			"dependsOrder": "sequence",
+			"group": "build",
+			"problemMatcher": []
+		},
+		{
+			"label": "💽 GP macOS AUv2 Build Debug +v (CMake)",
+			"dependsOn": ["Bump Version (macOS)", "GP macOS Build Debug (CMake)"],
+			"dependsOrder": "sequence",
+			"group": "build",
+			"problemMatcher": []
+		},
+		{
+			"label": "GP macOS Build Release (CMake)",
+			"type": "shell",
+			"command": "cmake -S . -B build-macos-release -DCMAKE_BUILD_TYPE=Release && cmake --build build-macos-release -j4",
+			"options": { "cwd": "${workspaceFolder}/GP" },
+			"group": "build",
+			"problemMatcher": ["$gcc"]
+		},
+		{
+			"label": "📦 GP macOS Build Debug Shallow (CMake)",
+			"type": "shell",
+			"command": "cmake -S . -B build-macos-debug-shallow -DCMAKE_BUILD_TYPE=Debug -DGLINT_BUNDLE_SHALLOW=ON && cmake --build build-macos-debug-shallow -j4",
+			"options": { "cwd": "${workspaceFolder}/GP" },
+			"dependsOn": ["Glint Bundle Shallow (macOS)"],
+			"dependsOrder": "sequence",
+			"group": "build",
+			"problemMatcher": ["$gcc"]
+		},
+		{
+			"label": "🧱 GP macOS Build Debug Deep (CMake)",
+			"type": "shell",
+			"command": "cmake -S . -B build-macos-debug-deep -DCMAKE_BUILD_TYPE=Debug -DGLINT_BUNDLE_DEEP=ON && cmake --build build-macos-debug-deep -j4",
+			"options": { "cwd": "${workspaceFolder}/GP" },
+			"dependsOn": ["Glint Bundle Deep (macOS)"],
+			"dependsOrder": "sequence",
+			"group": "build",
+			"problemMatcher": ["$gcc"]
+		},
+		{
+			"label": "📦 GP macOS Build Release Shallow (CMake)",
+			"type": "shell",
+			"command": "cmake -S . -B build-macos-release-shallow -DCMAKE_BUILD_TYPE=Release -DGLINT_BUNDLE_SHALLOW=ON && cmake --build build-macos-release-shallow -j4",
+			"options": { "cwd": "${workspaceFolder}/GP" },
+			"dependsOn": ["Glint Bundle Shallow (macOS)"],
+			"dependsOrder": "sequence",
+			"group": "build",
+			"problemMatcher": ["$gcc"]
+		},
+		{
+			"label": "🧱 GP macOS Build Release Deep (CMake)",
+			"type": "shell",
+			"command": "cmake -S . -B build-macos-release-deep -DCMAKE_BUILD_TYPE=Release -DGLINT_BUNDLE_DEEP=ON && cmake --build build-macos-release-deep -j4",
+			"options": { "cwd": "${workspaceFolder}/GP" },
+			"dependsOn": ["Glint Bundle Deep (macOS)"],
+			"dependsOrder": "sequence",
+			"group": "build",
+			"problemMatcher": ["$gcc"]
+		}
+	]
+}

@@ -1,0 +1,275 @@
+/**
+ * about_modal.css — glint_gp — About modal styles
+ *
+ * Loaded via glint_document::loadStylesheet("/styles/about_modal.css").
+ * Served from glint_user_code/web/styles/ by the onRequest handler in apps/gp/vcu_window.cpp.
+ */
+
+/* ── Backdrop overlay ────────────────────────────────────────────────────── */
+.about-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: none;
+  opacity: 0;
+  transition: 0.2s;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(5px);
+}
+
+.about-modal-copyright-text-container {
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+  color: #9e9e9e;
+  user-select: none;
+}
+
+.about-modal-copyright-text-url:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ── Main card ───────────────────────────────────────────────────────────── */
+.about-modal-card {
+  position: relative;
+  background-color: #1c1c1e;
+  border-radius: 18px;
+  padding: 16px 32px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  /* Entry animation start state — open() resets computedStyle to these before
+     starting the transition so repeated opens always animate from the same origin. */
+  opacity: 0;
+  transform: scale(0.7);
+  filter: blur(10px) brightness(0);
+  transition: 0.2s;
+}
+
+/* ── Close [×] button ───────────────────────────────────────────────────── */
+.about-modal-close-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* ── Left column ─────────────────────────────────────────────────────────── */
+.about-modal-left-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+/* ── Logo container (glow + logo stacked) ────────────────────────────────── */
+.about-modal-logo-container {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+/* ── Mellow glow image (absolute, behind logo) ───────────────────────────── */
+.about-modal-glow {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  z-index: 0;
+  opacity: 0.85;
+  filter: hue-rotate(200deg) saturate(1.4) brightness(1.1);
+}
+
+@keyframes about-modal-glow-rotating-spin {
+    from {
+        opacity: 0.2;
+        transform: rotate(0deg) scale(0.7);
+    }
+    50%   {
+        opacity: 1;
+        transform: rotate(180deg) scale(1.1);
+    }
+    to   {
+        opacity: 0.2;
+        transform: rotate(360deg) scale(0.7);
+    }
+}
+
+.about-modal-glow-rotating {
+  position: absolute;
+  width: 160px;
+  height: 120;
+  z-index: 0;
+  opacity: 0.85;
+  filter: hue-rotate(200deg) saturate(1.4) brightness(1.1);
+  transform: rotate(0deg);
+  animation: about-modal-glow-rotating-spin 10s ease-in-out infinite;
+}
+
+/* ── Square logo image (above the glow) ─────────────────────────────────── */
+.about-modal-logo {
+  width: 75px;
+  height: 52px;
+  z-index: 1;
+}
+
+/* ── "GlintPlug" title row ──────────────────────────────────────── */
+.about-modal-title-row {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  margin-bottom: 0px;
+}
+
+/* ── "GlintPlug" word ─────────────────────────────────────────────────── */
+.about-modal-title-main {
+  font-size: 18px;
+  font-weight: 200;
+  font-style: italic;
+  color: #ffffff;
+  user-select: none;
+}
+
+
+/* ── Version string ──────────────────────────────────────────────────────── */
+.about-modal-version {
+  font-size: 12px;
+  color: #ffffff;
+  opacity: 0.7;
+  /* margin-top: 4px; */
+  user-select: none;
+  font-weight: 200;
+  margin-bottom: 16px;
+}
+
+/* ── Attribution rows ("Powered by …" / "Created with …") ───────────────── */
+.about-modal-attribution-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  opacity: 0.5;
+  margin-bottom: 4px;
+}
+
+.about-modal-attribution-row:last-child {
+  margin-bottom: 0px;
+}
+
+/* ── Attribution prefix label ("Powered by", "Created with") ────────────── */
+.about-modal-attribution-label {
+  font-size: 12px;
+  color: #ffffff;
+  /* margin-right: 0px; */
+  user-select: none;
+  font-weight: 200;
+}
+
+/* ── Attribution value ("Superkraft", "Rezonant") ────────────────────────── */
+.about-modal-attribution-value {
+  font-size: 12px;
+  color: #ffffff;
+  user-select: none;
+  font-weight: 200;
+}
+
+/* ── Vertical separator between left and right columns ───────────────────── */
+.about-modal-divider {
+  width: 1px;
+  background-color: #ffffff;
+  opacity: 0.2;
+  margin-left: 22px;
+  margin-right: 22px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  /* transform: scaleY(1.2); */
+  height: 100%;
+}
+
+/* ── Right column ────────────────────────────────────────────────────────── */
+.about-modal-right-col {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   License-fail modal
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.license-fail-modal-card {
+  position: relative;
+  background-color: #1c1c1e;
+  border-radius: 32px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: scale(0.7);
+  filter: blur(10px) brightness(0);
+  transition: 0.25s;
+}
+
+.license-fail-modal-icon-wrap {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.license-fail-modal-glow {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  filter: hue-rotate(330deg) saturate(2.5) brightness(1.3);
+  animation: about-modal-glow-rotating-spin 6s ease-in-out infinite;
+}
+
+.license-fail-modal-logo {
+  width: 60px;
+  height: 60px;
+  z-index: 1;
+}
+
+.license-fail-modal-title {
+  font-size: 16px;
+  user-select: none;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.license-fail-modal-body {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.85);
+  user-select: none;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.license-fail-modal-hint {
+  font-weight: 200;
+  user-select: none;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.license-fail-shield-license-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 16;
+}

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="UserMacros">
+    <GLINT_REPO_ROOT>$(ProjectDir)..\..</GLINT_REPO_ROOT>
+    <GLINT_THIRD_PARTY_ROOT>$(GLINT_REPO_ROOT)\third_party</GLINT_THIRD_PARTY_ROOT>
+    <GLINT_SKIA_ROOT>$(GLINT_THIRD_PARTY_ROOT)\skia</GLINT_SKIA_ROOT>
+    <GLINT_SKIA_LIBS>skia.lib;skottie.lib;sksg.lib;skshaper.lib;skparagraph.lib;skunicode_icu.lib;skunicode_core.lib;svg.lib;libpng.lib;zlib.lib</GLINT_SKIA_LIBS>
+    <GLINT_D3D12_ENABLED>false</GLINT_D3D12_ENABLED>
+    <GLINT_D3D12_DEFS />
+    <IPLUG2_ROOT>$(ProjectDir)..\..\third_party\iPlug2OOS\iPlug2</IPLUG2_ROOT>
+    <BINARY_NAME>GlintPlug</BINARY_NAME>
+    <EXTRA_ALL_DEFS>NO_IGRAPHICS;SAMPLE_TYPE_FLOAT;IGRAPHICS_SKIA;GLINT_RENDER_GPU</EXTRA_ALL_DEFS>
+    <EXTRA_DEBUG_DEFS>_ITERATOR_DEBUG_LEVEL=0</EXTRA_DEBUG_DEFS>
+    <EXTRA_RELEASE_DEFS />
+    <EXTRA_TRACER_DEFS />
+    <EXTRA_INC_PATHS>$(GLINT_REPO_ROOT);$(GLINT_REPO_ROOT)\GP;$(GLINT_THIRD_PARTY_ROOT);$(GLINT_SKIA_ROOT)\src\skia;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include</EXTRA_INC_PATHS>
+    <PDB_FILE>$(SolutionDir)build-win\pdbs\$(TargetName)_$(Platform)_$(Configuration).pdb</PDB_FILE>
+    <BUILD_DIR>$(SolutionDir)build-win</BUILD_DIR>
+    <CREATE_BUNDLE_SCRIPT>$(IPLUG2_ROOT)\Scripts\create_bundle.bat</CREATE_BUNDLE_SCRIPT>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(GLINT_D3D12_ENABLED)'=='true' or '$(GLINT_D3D12_ENABLED)'=='1'">
+    <GLINT_D3D12_DEFS>GLINT_ENABLE_D3D12;SK_GANESH;SK_DIRECT3D</GLINT_D3D12_DEFS>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Platform)'=='x64' and '$(Configuration)'=='Debug'">
+    <GLINT_SKIA_LIB_DIR>$(GLINT_SKIA_ROOT)\win\x64\Release</GLINT_SKIA_LIB_DIR>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Platform)'=='x64' and ('$(Configuration)'=='Release' or '$(Configuration)'=='Tracer')">
+    <GLINT_SKIA_LIB_DIR>$(GLINT_SKIA_ROOT)\win\x64\Release</GLINT_SKIA_LIB_DIR>
+  </PropertyGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(IPLUG2_ROOT)\common-win.props" />
+  </ImportGroup>
+  <PropertyGroup>
+    <VST_ICON>$(SolutionDir)resources\GP.ico</VST_ICON>
+  </PropertyGroup>
+  <!-- Override DEBUG_DEFS: all prebuilt libs (Skia, static_rtPack) use /MT (Release).
+       Defining _DEBUG with /MT pulls in libcpmtd.lib which needs the debug CRT.
+       Keep non-CRT debug markers so SDK code can still detect a debug/development build. -->
+  <PropertyGroup>
+    <DEBUG_DEFS>DEVELOPMENT=1;DEBUG=1;</DEBUG_DEFS>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ICUDAT_PATH>$(GLINT_SKIA_ROOT)\win\bin\icudtl.dat</ICUDAT_PATH>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetName>$(BINARY_NAME)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(EXTRA_INC_PATHS);$(IPLUG_INC_PATHS);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>$(EXTRA_ALL_DEFS);$(GLINT_D3D12_DEFS);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalOptions>/bigobj /utf-8 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(GLINT_SKIA_LIB_DIR);C:\Program Files (x86)\Intel\oneAPI\mkl\latest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(GLINT_SKIA_LIBS);mkl_sequential.lib;mkl_intel_lp64.lib;mkl_core.lib;iphlpapi.lib;user32.lib;gdi32.lib;shell32.lib;ole32.lib;advapi32.lib;comdlg32.lib;windowscodecs.lib;dwrite.lib;dxgi.lib;d3d12.lib;d3dcompiler.lib;usp10.lib;wininet.lib;comctl32.lib;Shlwapi.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ProgramDatabaseFile>$(PDB_FILE)</ProgramDatabaseFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>CALL "$(SolutionDir)scripts\postbuild-win.bat" "$(TargetExt)" "$(BINARY_NAME)" "$(Platform)" "$(COPY_VST2)" "$(TargetPath)" "$(VST2_ARM64EC_PATH)" "$(VST2_X64_PATH)" "$(VST3_ARM64EC_PATH)" "$(VST3_X64_PATH)" "$(AAX_ARM64EC_PATH)" "$(AAX_X64_PATH)" "$(CLAP_ARM64EC_PATH)" "$(CLAP_X64_PATH)" "$(BUILD_DIR)" "$(VST_ICON)" "$(AAX_ICON)" "$(CREATE_BUNDLE_SCRIPT)" "$(GLINT_SKIA_ROOT)\win\bin\icudtl.dat"
+</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>CALL "$(SolutionDir)scripts\prebuild-win.bat" "$(TargetExt)" "$(BINARY_NAME)" "$(Platform)" "$(TargetPath)" "$(OutDir)" "$(Configuration)"</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="BINARY_NAME">
+      <Value>$(BINARY_NAME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="EXTRA_ALL_DEFS">
+      <Value>$(EXTRA_ALL_DEFS)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="EXTRA_DEBUG_DEFS">
+      <Value>$(EXTRA_DEBUG_DEFS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="EXTRA_RELEASE_DEFS">
+      <Value>$(EXTRA_RELEASE_DEFS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="EXTRA_TRACER_DEFS">
+      <Value>$(EXTRA_TRACER_DEFS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PDB_FILE">
+      <Value>$(PDB_FILE)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BUILD_DIR">
+      <Value>$(BUILD_DIR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CREATE_BUNDLE_SCRIPT">
+      <Value>$(CREATE_BUNDLE_SCRIPT)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

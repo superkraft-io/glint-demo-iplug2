@@ -1,0 +1,228 @@
+/**
+ * license_form.css — GlintPlug
+ *
+ * Ported from:
+ *   view_to_replicate/frontend/sk_ui/sk_ui_startForm/
+ *   sk_ui_licenseDownloadedForm/sk_ui_licenseDownloadedForm.css
+ *
+ * Loaded via:
+ *   body->mRoot.loadStylesheet("/styles/license_form.css");
+ */
+
+/* ── Backdrop / outer shell ──────────────────────────────────────────────────── */
+.cert-form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  opacity: 0;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(12px);
+  transition: 2000ms;
+}
+
+/* ── Close [×] button — top-right corner ────────────────────────────────────── */
+.cert-close-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  z-index: 9999999;
+  opacity: 0;
+  transition: opacity 1000ms ease-out;
+}
+
+/* ── Radial glow behind the certificate ─────────────────────────────────────── */
+.cert-glow {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  background-color: rgba(0, 157, 255, 0.59);
+  filter: blur(50px);
+  opacity: 0; /* hidden until cert-glow-pulsating class is added */
+  top: 32px;
+}
+
+/* Pulsate keyframe — added to glow after showForm().
+   Opacity is driven entirely by this animation (matches Chrome reference). */
+@keyframes cert-glow-pulsate {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0.55;
+    transform: scale(0.95);
+  }
+}
+
+.cert-glow-pulsating {
+  animation: cert-glow-pulsate 3s ease-in-out infinite;
+}
+
+/* ── Certificate holder — centres the 3-D-tilting card ──────────────────────── */
+.cert-holder {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 2000ms ease-out;
+}
+
+/* ── Certificate card — scales down and carries the 3-D perspective transform ── */
+.cert-card {
+  position: relative;
+  transform: scale(0.65);
+  transition: transform 200ms;
+}
+
+/* ── Black overlay — starts opaque, fades out after showForm() ───────────────── */
+.cert-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background-color: #000000;
+  opacity: 1;
+  transition: opacity 2000ms ease-out;
+}
+
+/* ── Common text styles ──────────────────────────────────────────────────────── */
+.cert-text {
+  color: #005300;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/* ── Content block — column-flex container for the body rows ─────────────────── */
+/* NOTE: position:relative (inherited from .cert-text position:absolute override)
+   serves as the containing block for absolute children (text labels, field overlays).
+   NO top offset — our port nests the background image inside cert-content, unlike
+   the JS reference where the image was a cert-card sibling at top-level.
+   The text label CSS positions (e.g. .cert-title top:83px) are relative to
+   cert-content which starts at Y=0 within cert-card. */
+.cert-content {
+  position: relative;
+  left: 0;
+  width: 577px;
+  height: 400px;
+  font-size: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-family: 'Times New Roman';
+}
+
+/* ── Monospace field labels: dates, name, duration ───────────────────────────── */
+.cert-field {
+  position: absolute;
+  color: #00256b;
+  font-size: 22px;
+}
+
+/* ── Holographic sticker container ───────────────────────────────────────────── */
+.cert-holo-sticker {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  right: 80px;
+  bottom: 80px;
+}
+
+/* ── Individual holo image layers ─────────────────────────────────────────────── */
+.cert-holo-layer {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+}
+
+
+/* ── Title: "CERTIFICATE OF LICENSE" ─────────────────────────────────────────── */
+.cert-title {
+  top: 83px;
+  left: 115;
+  font-size: 28px;
+}
+
+/* ── Subtitle: "THIS IS TO CERTIFY" ─────────────────────────────────────────── */
+.cert-subtitle {
+  top: 134px;
+  left: 207;
+  font-size: 16px;
+}
+
+.cert-legal_use_of {
+  top: 189px;
+  left: 95px;
+}
+
+.cert-for_days_starting_on {
+  top: 223px;
+  left: 95px;
+}
+
+.cert-issued_by_on {
+    top: 0px;
+    left: 0px;
+}
+
+.cert-glint-ui-project {
+  left: 230px;
+  top: 182px;
+  font-size: 25px;
+}
+
+.cert-issued_by_on {
+    left: 88px;
+    top: 285px;
+    font-size: 17px;
+}
+
+.cert-superkraft {
+  left: 178px;
+  top: 283px;
+  font-size: 17px;
+}
+
+.cert-sign-date {
+  left: 308px;
+  top: 283px;
+  font-size: 17px;
+  white-space: break-spaces;
+}
+
+.cert-license-duration {
+  left: 125px;
+  top: 220px;
+  font-size: 22px;
+  width: 45px;
+  text-align: center;
+}
+
+
+.cert-license-start {
+  left: 342px;
+  top: 221px;
+  font-size: 22px;
+  white-space: break-spaces;
+}

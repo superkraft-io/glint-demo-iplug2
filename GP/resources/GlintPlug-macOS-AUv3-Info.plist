@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>GlintPlug</string>
+	<key>CFBundleGetInfoString</key>
+	<string>GlintPlug v1.0.7 Copyright © 2026 Superkraft</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.superkraft.io.app.GlintPlug.AUv3</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>GlintPlug</string>
+	<key>CFBundlePackageType</key>
+	<string>XPC!</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.7</string>
+	<key>CFBundleVersion</key>
+	<string>1.0.7</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.14.0</string>
+	<key>NSExtension</key>
+	<dict>
+		<key>NSExtensionAttributes</key>
+		<dict>
+			<key>AudioComponentBundle</key>
+			<string>com.superkraft.io.app.GlintPlug.AUv3Framework</string>
+			<key>AudioComponents</key>
+			<array>
+				<dict>
+					<key>description</key>
+					<string>GlintPlug</string>
+					<key>manufacturer</key>
+					<string>SpAI</string>
+					<key>name</key>
+					<string>Superkraft: GlintPlug</string>
+					<key>sandboxSafe</key>
+					<true/>
+					<key>subtype</key>
+					<string>GPLU</string>
+					<key>tags</key>
+					<array>
+						<string>Effects</string>
+					</array>
+					<key>type</key>
+					<string>aufx</string>
+					<key>version</key>
+					<integer>65543</integer>
+				</dict>
+			</array>
+		</dict>
+		<key>NSExtensionPointIdentifier</key>
+		<string>com.apple.AudioUnit-UI</string>
+		<key>NSExtensionPrincipalClass</key>
+		<string>IPlugAUViewController_vGlintPlug</string>
+	</dict>
+</dict>
+</plist>

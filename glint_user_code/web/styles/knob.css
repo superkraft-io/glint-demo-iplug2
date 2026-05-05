@@ -1,0 +1,145 @@
+/*
+ * knob.css — Visual styles for the glint_knob component
+ *
+ * Load alongside main.css via glint_document::loadStylesheet():
+ *   doc.loadStylesheet("/styles/knob.css");
+ *
+ * Also contains the .controls-strip layout used in apps/gp/vcu_window.cpp. */
+
+/* ── Controls strip ─────────────────────────────────────────────────────────
+ * Horizontal row of knobs rendered between .main-content and .footer.
+ * flex: row / centered / wraps if needed / 20 px vertical padding.
+ */
+.controls-strip {
+  gap: 32px;
+  padding-left: 20px;
+}
+
+/* ── Knob face image ──────────────────────────────────────────────────────── */
+.knob_face {
+    object-fit: contain;
+    pointer-events: none;
+    /* border-radius rounds any square corners on the source image */
+    border-radius: 9999px;
+}
+
+/* ── Texture overlay ─────────────────────────────────────────────────────── */
+.knob_texture {
+    object-fit: contain;
+    pointer-events: none;
+    border-radius: 9999px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: overlay;
+    opacity: 0.5;
+    background: url(/img/knob_face_texture.png);
+}
+
+/* ── Outer glow ──────────────────────────────────────────────────────────── */
+.outer_glow {
+  left: -55%;
+  top: -55%;
+  width: 210%;
+  height: 210%;
+  border-radius: 9999px;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.outer_glow_glow {
+  filter: blur(15px);
+  border-radius: 9999px;
+  width: 50%;
+  height: 50%;
+  background-color: white;
+}
+
+/* ── Inner glow ──────────────────────────────────────────────────────────── */
+.inner_glow {
+  border-radius: 100px;
+  opacity: 1;
+  /* transform: scaleX(1); */
+  box-shadow: inset 0px -3px 8px 2px #76c8ff;
+}
+
+/* ── Numeric value input ─────────────────────────────────────────────────── */
+/*
+ * Centered horizontally within the 140 px knob:
+ *   left = (140px − 40px) / 2 = 50px
+ * Placed near the bottom:
+ *   bottom = 14px  (input top = 140 − 14 − height ≈ row at ~106 px)
+ */
+.knob_value_input {
+  left: 50px;
+  /* bottom: 14px; */
+  height: 22px;
+  background-color: #0000004d;
+  border-width: 1px;
+  border-color: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: #c8c8c8;
+  font-size: 11px;
+  text-align: center;
+  padding: 0px;
+  width: 70px;
+  backdrop-filter: blur(10px);
+}
+
+.knob_value_input:focus {
+    border-color: #ffffff;
+    border-width: 1px;
+    color: #ffffff;
+    background-color: #4e4e4e;
+}
+
+
+
+.arrow-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  pointer-events: none;
+  padding: 6;
+}
+.arrow-left {
+  width: 12px;
+  height: 8px;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-right: 8px solid rgb(255, 255, 255);
+  z-index: 9999999;
+}
+
+/* ── bypass_led_btn ──────────────────────────────────────────────────────── */
+.bypass-led-btn {
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.bypass-led-btn:hover {
+    background-color: rgba(255, 255, 255, 0.07);
+}
+
+.bypass-led-btn-img {
+    width: 12px;
+    height: 12px;
+    object-fit: contain;
+    pointer-events: none;
+    filter: sepia(1) saturate(5);
+}
+
+.bypass-led-btn-label {
+    font-size: 9px;
+    font-weight: 600;
+    color: #bababa;
+    letter-spacing: 1px;
+    pointer-events: none;
+}
+
+/* ── knobControl ─────────────────────────────────────────────────────────── */
+/* Absolutely positions bypass_led_btn at the upper-left of the knob area.    */
+.knob-control-bypass {
+  z-index: 10;
+}

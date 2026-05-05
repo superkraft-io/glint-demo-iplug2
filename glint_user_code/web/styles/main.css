@@ -1,0 +1,187 @@
+/*
+ * main.css — glint_gp UI stylesheet
+ *
+ * Loaded at runtime via glint_document::loadStylesheet() which routes through
+ * the document's onRequest interceptor before falling back to disk.
+ *
+ * Selector reference for glint:
+ *   body   — the root canvas (typeNameOverride = "body")
+ *   div    — any glint_element added via _c.add.div() or default elements
+ *   img    — image elements (_c.add.image()), including SVG assets — tagName() returns "img"
+ *   #id    — element with el->id = "id"
+ *   .cls   — element with el->element.className containing "cls"
+ *            (requires GlintCssDomElement adapter wired to each element)
+ *
+ * NOTE: These rules are applied programmatically via GlintCssCascade::resolve()
+ * and GlintCssApply::apply() — inline styles (_c.style.*) always win
+ * over rules here (they are treated as the author "inline" origin in the cascade).
+ */
+
+/* ── Font faces ──────────────────────────────────────────────────────────────
+ *
+ * Each @font-face fires an onRequest callback for its src url(), allowing the
+ * host to intercept and serve font bytes from an embedded resource or any
+ * custom source.  The URL paths below resolve through glint_assets_path() in
+ * the existing onRequest handler → <workspace>/glint_assets/<path>.
+ */
+
+/* Roboto */
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/roboto/Roboto-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* ── Root canvas ─────────────────────────────────────────────────────────────── */
+
+body {
+  background-color: #111111;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: Roboto;
+}
+
+/* ── Generic containers ──────────────────────────────────────────────────────── */
+
+div {
+  box-sizing: border-box;
+}
+
+/* Header bar — target by id once assigned: el->id = "header" */
+#header {
+  background-color: #111111;
+  height: 52px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px;
+  gap: 16px;
+}
+
+/* Footer bar */
+#footer {
+  height: 22px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-flags {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: 100ms;
+  gap: 4px;
+}
+
+
+/* Latency badge */
+#latency-badge {
+  background-color: #00cc44;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 2px 6px;
+  gap: 4px;
+  color: #000000;
+  font-size: 12px;
+  font-family: Roboto;
+}
+
+/* Title label group */
+#title-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ── Typography ──────────────────────────────────────────────────────────────── */
+
+/* Plugin name thin-italic part */
+#title-thin {
+  color: #ffffff;
+  font-size: 20px;
+  font-family: Roboto;
+  user-select: none;
+}
+
+/* Plugin name regular part */
+#title-regular {
+  color: #ffffff;
+  font-size: 20px;
+  font-family: Roboto;
+  user-select: none;
+}
+
+/* Dim text (e.g. "Made in") */
+.text-dim {
+  color: #aaaaaa;
+  font-size: 14px;
+  font-family: Roboto;
+  user-select: none;
+}
+
+/* ── Images ──────────────────────────────────────────────────────────────────── */
+
+img {
+  object-fit: contain;
+}
+
+/* Logo image */
+#logo {
+  width: 82px;
+  height: 24px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+/* Flag images in footer */
+.flag {
+  width: 22px;
+  height: 18px;
+  object-fit: contain;
+}
+
+/* ── SVG icons ───────────────────────────────────────────────────────────────── */
+
+svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ── IO monitor buttons ──────────────────────────────────────────────────────── */
+
+.io-button {
+  background-color: #2a2a2a;
+  border-color: #555555;
+  border-width: 1px;
+  border-radius: 11px;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: Roboto;
+}
+
+.io-button.active {
+  background-color: #3399ff;
+}
+
+button {
+  border-width: 1px;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: Roboto;
+  transition: 0.2s;
+}
+
+button:hover {
+  background-color: #353535;;
+} 
+
+button:active {
+  background-color: #222222;
+}

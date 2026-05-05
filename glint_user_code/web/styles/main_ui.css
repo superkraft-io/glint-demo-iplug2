@@ -1,0 +1,185 @@
+/*
+ * main_ui.css — glint_gp main layout stylesheet
+ *
+ * Styles for the top-level layout: app root, header, main content, and footer.
+ * Elements are identified by class names added via _c.classList.add() in
+ * apps/gp/vcu_window.cpp.
+ *
+ * Colour reference (matches C++ palette in apps/gp/vcu_window.cpp):
+ *   #111111  — C_HEADER_BG  (header / footer bar)
+ *   #ffaa00  — C_ORANGE_ACC (accent / Buy Now button)
+ *   #00ff00  — latency badge background
+ */
+
+/* ── App root wrapper ────────────────────────────────────────────────────────
+ * Full-size flex column that stacks header → content → footer.
+ */
+.app-root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+/* ── Header bar ──────────────────────────────────────────────────────────────
+ * Fixed-height row containing logo, title, buttons and badges.
+ */
+.header {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 3px;
+  gap: 8px;
+  padding: 0px 45px;
+}
+
+/* Superkraft logo image */
+.header-logo {
+  width: 22px;
+  height: 24px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  margin-left: 17;
+}
+
+.header-logo-text {
+  margin-left: 4px;
+  font-weight: 200;
+  font-size: 15px;
+}
+
+
+/* "GlintPlug" title wrapper */
+.header-title {
+  width: 320px;
+  /* height: 23px; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+/* "GlintPlug" thin-italic part */
+.header-title-name {
+  color: white;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 200;
+}
+
+
+/* Latency badge container */
+.latency-badge {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  width: 68px;
+  height: 30px;
+  background-size: contain;
+  margin-right: 10;
+}
+
+/* Clock icon inside the latency badge */
+.latency-badge-icon {
+  width:  16px;
+  height: 16px;
+}
+
+/* "32ms" label inside the latency badge */
+.latency-badge-label {
+  color:       black;
+  font-size:   12px;
+}
+
+/* ── Main content area ───────────────────────────────────────────────────────
+ * Fills the remaining vertical space between header and footer.
+ * align = "fullwidth fill" is kept as a C++ attribute (not a CSS property).
+ */
+.main-content {
+  width: 100%;
+  padding: 0px 58px;
+}
+
+/* ── Footer bar ──────────────────────────────────────────────────────────────
+ * Thin bar at the bottom showing country-of-origin flags.
+ */
+.footer {
+  width: 100%;
+  padding: 0px 50px;
+}
+
+/* "Made in" text */
+.footer-made-in {
+  width:       fit-content;
+  color:       grey;
+  font-size:   14px;
+  font-weight: 300;
+}
+
+/* Flag images */
+.footer-flag {
+  width:      22px;
+  height:     18px;
+  object-fit: contain;
+}
+
+.main_knob {
+  filter: saturate(0.2) brightness(0.5)
+}
+
+
+
+.app-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.routing-section {
+  width: 178px;
+  height: 100%;
+  overflow: hidden;
+  border-color: #434242;
+  border-width: 1px;
+  border-radius: 16px;
+  backdrop-filter: blur(2px);
+  background-color: #5151511d;
+}
+
+
+.controlSection_ioKnobs {
+  position: absolute;
+  right: 51px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(145.008deg, #1d1d1d 3.67647%, #2a2a2a 28.4314%, #181818 28.6765%, #111314 72.3039%);
+  padding: 2px;
+  border-radius: 17;
+  top: -33;
+}
+
+
+.powered-by-superkraft-icon {
+  width: 20px;
+  height: 16px;
+}
+
+.powered-by-rezonant-icon {
+  width: 20px;
+  height: 16px;
+}
+
+.powered-by-glint-icon {
+  width: 20px;
+  height: 16px;  
+}

@@ -39,7 +39,19 @@ if ($BuildValidator -eq "build-validator") {
 }
 
 if (Test-Path "VST3_BUILD") { Remove-Item -Recurse -Force "VST3_BUILD" }
-if (Test-Path "public.sdk\samples") { Remove-Item -Recurse -Force "public.sdk\samples" }
+if (Test-Path "public.sdk\samples") {
+    $retries = 5
+    for ($i = 1; $i -le $retries; $i++) {
+        try {
+            Remove-Item -Recurse -Force "public.sdk\samples"
+            break
+        } catch {
+            if ($i -eq $retries) { throw }
+            Write-Host "Removal of public.sdk\samples failed (attempt $i/$retries), retrying in 3s..."
+            Start-Sleep -Seconds 3
+        }
+    }
+}
 if (Test-Path "vstgui4") { Remove-Item -Recurse -Force "vstgui4" }
 Get-ChildItem -Path . -Filter ".git*" -Force | Remove-Item -Recurse -Force
 Get-ChildItem -Path . -Recurse -Filter ".git*" -Force | Remove-Item -Recurse -Force

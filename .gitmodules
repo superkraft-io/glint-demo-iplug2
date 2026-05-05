@@ -1,0 +1,6 @@
+[submodule "third_party/iPlug2OOS"]
+	path = third_party/iPlug2OOS
+	url = https://github.com/iplug2/iPlug2OOS
+[submodule "third_party/glint"]
+	path = third_party/glint
+	url = https://github.com/superkraft-io/glint.git

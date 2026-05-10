@@ -344,7 +344,7 @@ public:
     document.add.div([this](glint_component_style& app) {
       app.classList.add("app-root");
 
-      app.add.image([](glint_image& logo) {
+      app.add.img([](glint_image& logo) {
         logo.classList.add("app-background");
         logo.src = "/img/background.png";
       });
@@ -352,7 +352,7 @@ public:
       app.add.div([](glint_component_style& header) {
         header.classList.add("header");
 
-        header.add.image([](glint_image& logo) {
+        header.add.img([](glint_image& logo) {
           logo.classList.add("header-logo");
           logo.src = "/img/glint.png";
           logo.addEventListener("mouseup", [](glint_event& e) {

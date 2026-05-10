@@ -509,7 +509,7 @@ public:
         });
 
         // ── Layer 2: knob face image ─────────────────────────────────────────
-        knobFace = add.image([this](glint_image& _c) {
+        knobFace = add.img([this](glint_image& _c) {
             _c.className = "knob_face";
             _c.style.position = "absolute";
             _c.style.width    = "100%";
@@ -520,7 +520,7 @@ public:
         
 
         // ── Layer 3: texture overlay (mix-blend-mode: overlay, opacity: 0.15) ─
-        mKnobTexture_ = add.image([this](glint_image& _c) {
+        mKnobTexture_ = add.img([this](glint_image& _c) {
             _c.className = "knob_texture";
         });
         _applyPendingKnobTextureClasses();
@@ -923,7 +923,7 @@ private:
         mInput_->type = _usesCustomText() ? "text" : "number";
         mInput_->min  = _rangeMin();
         mInput_->max  = _rangeMax();
-        mInput_->setValueWithoutRedraw(_formatValueText(value_));
+        mInput_->setValue(_formatValueText(value_));
     }
 
     // Formats a [0, 1] float as "0.00" … "1.00".

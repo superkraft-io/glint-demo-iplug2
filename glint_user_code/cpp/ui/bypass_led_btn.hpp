@@ -46,7 +46,7 @@ public:
         });
 
         
-        mLedImg_ = add.image([](glint_image& img) {
+        mLedImg_ = add.img([](glint_image& img) {
             img.className = "bypass-led-btn-img";
             img.src       = "/img/led/led_off.png";
         });

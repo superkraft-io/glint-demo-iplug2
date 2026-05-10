@@ -146,13 +146,13 @@ public:
         });*/
 
          // Mellow glow rotating
-        _c.add.image([](glint_image& _c) {
+        _c.add.img([](glint_image& _c) {
           _c.className = "about-modal-glow-rotating";
           _c.src       = "/img/mellow_glow.png";
         });
 
         // Square logo — above the glow via z-index
-        _c.add.image([](glint_image& _c) {
+        _c.add.img([](glint_image& _c) {
           _c.className = "about-modal-logo";
           _c.src       = "/img/glint.png";
         });
@@ -191,17 +191,17 @@ public:
           icons.align = "center middle";
           icons.style.gap = 4.f;
 
-          icons.add.image([](glint_image& icon) {
+          icons.add.img([](glint_image& icon) {
             icon.classList.add("powered-by-superkraft-icon");
             icon.src = "/img/superkraft.png";
           });
 
-          icons.add.image([](glint_image& icon) {
+          icons.add.img([](glint_image& icon) {
             icon.classList.add("powered-by-rezonant-icon");
             icon.src = "/img/rezonant.png";
           });
 
-          icons.add.image([](glint_image& icon) {
+          icons.add.img([](glint_image& icon) {
             icon.classList.add("powered-by-glint-icon");
             icon.src = "/img/glint.png";
           });

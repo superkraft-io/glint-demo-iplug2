@@ -71,8 +71,7 @@
  *   bottom = 14px  (input top = 140 − 14 − height ≈ row at ~106 px)
  */
 .knob_value_input {
-  left: 50px;
-  /* bottom: 14px; */
+  position: absolute;
   height: 22px;
   background-color: #0000004d;
   border-width: 1px;

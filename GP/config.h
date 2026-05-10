@@ -1,7 +1,7 @@
 ﻿#define PLUG_NAME "GlintPlug"
 #define PLUG_MFR "Superkraft"
-#define PLUG_VERSION_HEX 0x00010012
-#define PLUG_VERSION_STR "1.0.18"
+#define PLUG_VERSION_HEX 0x00010014
+#define PLUG_VERSION_STR "1.0.20"
 #define PLUG_UNIQUE_ID 'GPLU'
 #define PLUG_MFR_ID 'SpAI'
 #define PLUG_URL_STR "https://superkraft.io"

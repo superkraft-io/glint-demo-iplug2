@@ -1,5 +1,6 @@
 # glint-iplug2-demo
 
+<img src="assets/screenshot.png" width="600" />
 
 A demo audio plugin built on top of [glint](https://github.com/superkraft-io/glint) and [iPlug2](https://github.com/iPlug2/iPlug2OOS).
 

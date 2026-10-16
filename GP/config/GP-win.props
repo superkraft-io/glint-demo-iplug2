@@ -5,7 +5,7 @@
     <GLINT_THIRD_PARTY_ROOT>$(GLINT_REPO_ROOT)\third_party</GLINT_THIRD_PARTY_ROOT>
     <GLINT_SKIA_ROOT>$(GLINT_THIRD_PARTY_ROOT)\skia</GLINT_SKIA_ROOT>
     <GLINT_SKIA_LIBS>skia.lib;skottie.lib;sksg.lib;skshaper.lib;skparagraph.lib;skunicode_icu.lib;skunicode_core.lib;svg.lib;libpng.lib;zlib.lib</GLINT_SKIA_LIBS>
-    <GLINT_D3D12_ENABLED>false</GLINT_D3D12_ENABLED>
+    <GLINT_D3D12_ENABLED>true</GLINT_D3D12_ENABLED>
     <GLINT_D3D12_DEFS />
     <IPLUG2_ROOT>$(ProjectDir)..\..\third_party\iPlug2OOS\iPlug2</IPLUG2_ROOT>
     <BINARY_NAME>GlintPlug</BINARY_NAME>
@@ -54,7 +54,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(GLINT_SKIA_LIB_DIR);C:\Program Files (x86)\Intel\oneAPI\mkl\latest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(GLINT_SKIA_LIBS);mkl_sequential.lib;mkl_intel_lp64.lib;mkl_core.lib;iphlpapi.lib;user32.lib;gdi32.lib;shell32.lib;ole32.lib;advapi32.lib;comdlg32.lib;windowscodecs.lib;dwrite.lib;dxgi.lib;d3d12.lib;d3dcompiler.lib;usp10.lib;wininet.lib;comctl32.lib;Shlwapi.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(GLINT_SKIA_LIBS);mkl_sequential.lib;mkl_intel_lp64.lib;mkl_core.lib;iphlpapi.lib;user32.lib;gdi32.lib;shell32.lib;ole32.lib;advapi32.lib;comdlg32.lib;windowscodecs.lib;dwrite.lib;dxgi.lib;d3d12.lib;d3dcompiler.lib;dcomp.lib;usp10.lib;wininet.lib;comctl32.lib;Shlwapi.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(PDB_FILE)</ProgramDatabaseFile>
     </Link>
     <PostBuildEvent>
@@ -65,6 +65,20 @@
       <Command>CALL "$(SolutionDir)scripts\prebuild-win.bat" "$(TargetExt)" "$(BINARY_NAME)" "$(Platform)" "$(TargetPath)" "$(OutDir)" "$(Configuration)"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
+  <!-- Glint sources that aren't header-only (CMake: glint_host_win32_support). -->
+  <ItemGroup>
+    <ClCompile Include="$(GLINT_THIRD_PARTY_ROOT)\glint\components\input\date\glint_date_input_bridge.cpp" />
+    <ClCompile Include="$(GLINT_THIRD_PARTY_ROOT)\glint\components\input\datetime_local\glint_datetime_local_input_bridge.cpp" />
+    <ClCompile Include="$(GLINT_THIRD_PARTY_ROOT)\glint\components\input\month\glint_month_input_bridge.cpp" />
+    <ClCompile Include="$(GLINT_THIRD_PARTY_ROOT)\glint\components\input\week\glint_week_input_bridge.cpp" />
+    <ClCompile Include="$(GLINT_THIRD_PARTY_ROOT)\glint\components\input\time\glint_time_input_bridge.cpp" />
+    <ClCompile Include="$(GLINT_THIRD_PARTY_ROOT)\glint\components\input\color\glint_input_colorpicker_bridge.cpp" />
+  </ItemGroup>
+  <!-- Compiled D3D shaders shipped in the binary (CMake: glint_embed_d3d_shaders).
+       Refresh with scripts\capture_d3d_shaders.ps1 after Skia or UI changes. -->
+  <ItemGroup Condition="Exists('$(GLINT_REPO_ROOT)\GP\shaders\glint_d3d_shaders.bin')">
+    <ResourceCompile Include="$(GLINT_REPO_ROOT)\GP\resources\glint_d3d_shaders.rc" />
+  </ItemGroup>
   <ItemGroup>
     <BuildMacro Include="BINARY_NAME">
       <Value>$(BINARY_NAME)</Value>

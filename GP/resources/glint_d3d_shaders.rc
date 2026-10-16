@@ -1,0 +1,2 @@
+// Compiled D3D shaders, read by glint's D3D shader cache at startup.
+GLINT_D3D_SHADERS RCDATA "..\\shaders\\glint_d3d_shaders.bin"
